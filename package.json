@@ -2,7 +2,8 @@
   "name": "ts-study",
   "version": "1.0.0",
   "scripts": {
-    "start": "tsc && node dist/index.js"
+    "start": "tsc && node dist/index.js",
+    "homework": "tsc && node dist/homework/homework3.js"
   },
   "private": true,
   "dependencies": {
