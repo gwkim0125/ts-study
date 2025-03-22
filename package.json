@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "tsc && node dist/index.js",
-    "homework": "tsc && node dist/homework/homework3.js"
+    "homework": "tsc && node dist/homework/homework3.js",
+    "testhomework": "tsc && node dist/homework/homework4.js"
   },
   "private": true,
   "dependencies": {
