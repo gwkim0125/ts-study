@@ -1,4 +1,6 @@
 import {input} from "./library/input";
+import * as fs from "node:fs";
+import {log} from "node:util";
 
 export const appRun = async () => {
     while(true) {
@@ -19,6 +21,7 @@ export const appRun = async () => {
                 continue
             }
             console.log(userEmail,userPassword,userNickname);
+            fs.appendFileSync("user.txt",`${userEmail}-${userPassword}-${userNickname}\n`)
             break
         }
         else if ( userSelect === "E") {
@@ -32,10 +35,13 @@ export const appRun = async () => {
                 console.log(" Your Password is too short.")
                 continue
             }
-            console.log(userEmail,userPassword)
+           const contents = fs.readFileSync("user.txt").toString()
+            console.log(contents)
             break
         }
     }
 }
 
-appRun()
+// appRun()
+const x = fs.readFileSync("user.txt").toString()
+console.log(x.split("\n")[1].split("-")[2])
