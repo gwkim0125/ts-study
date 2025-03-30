@@ -1,21 +1,25 @@
-import {addAll,addAllv2,addOdd,checkPrime,countPrime} from "./homework4"
+import {addAll,addAllv2,addOdd,checkPrime,countPrime,getNthFibonacci} from "./homeworkTest"
+//
+// const P = addAll(10)
+//
+// console.log(P)
+//
+// const Ad =addAllv2(5)
+//
+// console.log(Ad)
+//
+// const odd = addOdd(10)
+//
+// console.log(odd)
+//
+// const isPrime = checkPrime(34)
+//
+// console.log(isPrime)
+//
+// const numPrime = countPrime(124)
+//
+// console.log(numPrime)
 
-const P = addAll(10)
+const numEvery = getNthFibonacci(10)
 
-console.log(P)
-
-const Ad =addAllv2(5)
-
-console.log(Ad)
-
-const odd = addOdd(10)
-
-console.log(odd)
-
-const isPrime = checkPrime(34)
-
-console.log(isPrime)
-
-const numPrime = countPrime(124)
-
-console.log(numPrime)
+console.log(numEvery)
