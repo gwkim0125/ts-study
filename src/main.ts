@@ -1,6 +1,5 @@
 import {input} from "./library/input";
 import * as fs from "node:fs";
-import {log} from "node:util";
 
 export const appRun = async () => {
     while(true) {
@@ -15,6 +14,10 @@ export const appRun = async () => {
                 console.log(" Email is wrong.")
                 continue
             }
+            else if (userEmail.includes(fs.readFileSync("user.txt").toString()) === false) {
+                console.log("Email is already registered.")
+                continue
+            }
             userPassword = await input("Please enter your password.")
             if(userPassword.length < 4) {
                 console.log(" Your Password is too short.")
@@ -22,6 +25,7 @@ export const appRun = async () => {
             }
             console.log(userEmail,userPassword,userNickname);
             fs.appendFileSync("user.txt",`${userEmail}-${userPassword}-${userNickname}\n`)
+            console.log("You are successfully registered.")
             break
         }
         else if ( userSelect === "E") {
@@ -30,18 +34,27 @@ export const appRun = async () => {
                 console.log(" Email is wrong.")
                 continue
             }
+            else if(userEmail.includes(fs.readFileSync("user.txt").toString()) === false) {
+                console.log("No Matched user found.")
+                continue
+            }
             userPassword = await input("Please enter your password.")
             if (userPassword.length < 4) {
                 console.log(" Your Password is too short.")
                 continue
             }
-           const contents = fs.readFileSync("user.txt").toString()
-            console.log(contents)
+            else if (userPassword.includes(fs.readFileSync("user.txt").toString()) === false) {
+                console.log("No Matched user found.")
+                continue
+            }
+            console.log("log in success!")
+            console.log(userEmail,userPassword)
             break
         }
     }
 }
 
-// appRun()
-const x = fs.readFileSync("user.txt").toString()
-console.log(x.split("\n")[1].split("-")[2])
+appRun()
+
+// const x = fs.readFileSync("user.txt").toString()
+// console.log(x.split("\n")[1].split("-")[2])
