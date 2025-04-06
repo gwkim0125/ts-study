@@ -1,4 +1,11 @@
-import {addAll,addAllv2,addOdd,checkPrime,countPrime,getNthFibonacci} from "./homeworkTest"
+import {
+  addAll,
+  addAllv2,
+  addOdd,
+  checkPrime,
+  countPrime,
+  getNthFibonacci,
+} from "./homeworkTest";
 //
 // const P = addAll(10)
 //
@@ -20,6 +27,6 @@ import {addAll,addAllv2,addOdd,checkPrime,countPrime,getNthFibonacci} from "./ho
 //
 // console.log(numPrime)
 
-const numEvery = getNthFibonacci(10)
+const numEvery = getNthFibonacci(10);
 
-console.log(numEvery)
+console.log(numEvery);

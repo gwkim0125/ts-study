@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "scripts": {
     "start": "tsc && node dist/main.js",
-    "homework": "tsc && node dist/homework/homework.js"
+    "homework": "tsc && node dist/homework/homework.js",
+    "pretty": "prettier --write \"src/**/*.ts\""
   },
   "private": true,
   "dependencies": {
     "@types/node": "^22.13.4",
+    "prettier": "^3.5.3",
     "typescript": "^5.7.3"
   }
 }
