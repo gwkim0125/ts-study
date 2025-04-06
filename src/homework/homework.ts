@@ -5,7 +5,7 @@ import {
   checkPrime,
   countPrime,
   getNthFibonacci,
-} from "./homeworkTest";
+} from "./homework5";
 //
 // const P = addAll(10)
 //
