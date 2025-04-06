@@ -14,17 +14,28 @@ export const appRun = async () => {
                 console.log(" Email is wrong.")
                 continue
             }
-            else if (userEmail.includes(fs.readFileSync("user.txt").toString()) === false) {
-                console.log("Email is already registered.")
-                continue
-            }
             userPassword = await input("Please enter your password.")
             if(userPassword.length < 4) {
                 console.log(" Your Password is too short.")
                 continue
             }
+
+            const text = fs.readFileSync("user.txt").toString();
+            const rows = text.split("\n")
+            let isFoundEmail = false
+            for (let i = 0; i < rows.length; i++) {
+                const userProfile = rows[i].split(", ");
+                if (userProfile[0] === userEmail) {
+                    console.log(" This Email is already registered.");
+                    isFoundEmail = true;
+                    break
+                }
+            }
+            if (isFoundEmail === true) {
+                continue;
+            }
             console.log(userEmail,userPassword,userNickname);
-            fs.appendFileSync("user.txt",`${userEmail}-${userPassword}-${userNickname}\n`)
+            fs.appendFileSync("user.txt",`${userEmail}, ${userPassword}, ${userNickname}\n`)
             console.log("You are successfully registered.")
             break
         }
@@ -34,22 +45,29 @@ export const appRun = async () => {
                 console.log(" Email is wrong.")
                 continue
             }
-            else if(userEmail.includes(fs.readFileSync("user.txt").toString()) === false) {
-                console.log("No Matched user found.")
-                continue
-            }
+
             userPassword = await input("Please enter your password.")
             if (userPassword.length < 4) {
                 console.log(" Your Password is too short.")
                 continue
             }
-            else if (userPassword.includes(fs.readFileSync("user.txt").toString()) === false) {
-                console.log("No Matched user found.")
-                continue
+            const text = fs.readFileSync("user.txt").toString();
+            const rows = text.split("\n")
+            // 1. 첫번째 줄을 쉼표로 자른다
+            // 2. 쉼표로 잘라서 생긴 배열에 존재하는 원소 중 첫번쨰 원소와 이메일이 일치하는지 확인한다
+            // 3. 이메일이 일치한다면 비밀번호또한 일치하는지 확인한다.
+            // 3-1. 비밀번호가 불일치한다면 다시 이메일과 비밀번호를 입력받는다.
+            // 4. 일치한다면 이 배열의 세번째 원소를 출력하고 로그인이 성공되었음을 알리고 프로그램을 종료한다
+            // 4. 이 배열의 첫번째 원소와 이메일이 일치하지 않는다면 다음 줄로 넘어가서 2,3번을 반복한다
+            for (let i= 0; i < rows.length; i++) {
+                const userProfile = rows[i].split(", ");
+                if (userProfile[0] === userEmail && userProfile[1] === userPassword) {
+                    console.log(`${userProfile[2]}, log in success`);
+                    process.exit(0);
+                }
+
             }
-            console.log("log in success!")
-            console.log(userEmail,userPassword)
-            break
+            console.log(" Email or Password is Wrong.")
         }
     }
 }
