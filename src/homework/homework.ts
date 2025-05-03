@@ -6,6 +6,10 @@ import {
   countPrime,
   getNthFibonacci,
 } from "./homework5";
+import {
+  Arrange1,
+    Arrange2,
+} from "./homework7";
 //
 // const P = addAll(10)
 //
@@ -27,6 +31,12 @@ import {
 //
 // console.log(numPrime)
 
-const numEvery = getNthFibonacci(10);
+// const numEvery = getNthFibonacci(10);
+//
+// console.log(numEvery);
 
-console.log(numEvery);
+// const sumArr = Arrange1([2,3,4])
+// console.log(sumArr);
+
+const sumArr2 = Arrange2([2,3,4,5])
+console.log(sumArr2);
