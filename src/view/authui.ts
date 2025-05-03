@@ -1,6 +1,6 @@
 import { input } from "../library/input";
 import fs from "node:fs";
-import { Database } from "../data/databse";
+import { UserService } from "../data/userService";
 
 export class AuthUI {
   signIn = async () => {
@@ -16,8 +16,8 @@ export class AuthUI {
       return null;
     }
 
-    const database = new Database();
-    return database.getUser(userEmail, userPassword);
+    const userService = new UserService();
+    return userService.getUser(userEmail, userPassword);
   };
   signUp = async () => {
     const userEmail = await input("Please enter your email: ");
@@ -33,22 +33,17 @@ export class AuthUI {
     }
 
     const userNickname = await input("Please enter your Nickname: ");
-    const userTextData = fs.readFileSync("user.txt").toString();
-    const userDataRows = userTextData.split("\n");
-    let isFoundEmail = false;
-    for (let i = 0; i < userDataRows.length; i++) {
-      const userProfile = userDataRows[i].split(", ");
-      if (userProfile[0] === userEmail) {
-        isFoundEmail = true;
-        console.log("User Email is already in use.");
-        return false;
-      }
+
+    const userService = new UserService();
+    const foundUser = userService.findUser(userEmail);
+    if ( foundUser === null) {
+      userService.createUser(userEmail, userPassword, userNickname);
+      return true;
+    }
+    else {
+      console.log("This Email is already in use.");
+      return false;
     }
 
-    fs.appendFileSync(
-      "user.txt",
-      `${userEmail}, ${userPassword}, ${userNickname}\n`,
-    );
-    return true;
   };
 }
