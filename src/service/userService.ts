@@ -1,12 +1,18 @@
 import fs from "node:fs";
 import { User } from "../entity/user";
+import { Database } from "../data/database";
 
 export class UserService {
+  database: Database;
+
+  constructor(database: Database) {
+    this.database = database;
+  }
+
   getUser = (email: string, password: string) => {
-    const userTextData = fs.readFileSync("user.txt").toString();
-    const userDataRows = userTextData.split("\n");
-    for (let i = 0; i < userDataRows.length; i++) {
-      const userProfile = userDataRows[i].split(", ");
+    const userProfiles = this.database.read("user.txt")
+    for (let i = 0; i < userProfiles.length; i++) {
+      const userProfile = userProfiles[i];
       const user = new User(userProfile[0], userProfile[1], userProfile[2]);
 
       if (user.getEmail() === email && user.getPassword() === password) {
@@ -16,10 +22,9 @@ export class UserService {
     return null;
   };
   findUser = (email: string) => {
-    const userTextData = fs.readFileSync("user.txt").toString();
-    const userDataRows = userTextData.split("\n");
-    for (let i = 0; i < userDataRows.length; i++) {
-      const userProfile = userDataRows[i].split(", ");
+    const userProfiles = this.database.read("user.txt")
+    for (let i = 0; i < userProfiles.length; i++) {
+      const userProfile = userProfiles[i];
       const user = new User(userProfile[0], userProfile[1], userProfile[2]);
 
       if (user.getEmail() === email) {

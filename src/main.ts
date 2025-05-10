@@ -1,6 +1,8 @@
 import { input } from "./library/input";
 import { AuthUI } from "./view/authui";
 import { User } from "./entity/user";
+import {UserService} from "./service/userService";
+import {Database} from "./data/database";
 
 class App {
   authUI: AuthUI;
@@ -37,7 +39,8 @@ class App {
     }
   };
 }
-
-const authUI = new AuthUI();
+const dataBase = new Database();
+const userService = new UserService(dataBase);
+const authUI = new AuthUI(userService);
 const app = new App(authUI);
 app.run();
