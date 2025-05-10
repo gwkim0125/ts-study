@@ -1,17 +1,15 @@
-type 속재료타입 = "팥" | "슈크림";
-class 붕어빵 {
-  private 속재료: 속재료타입;
+const numbers = [10, 20, 30];
 
-  constructor(속재료: 속재료타입) {
-    this.속재료 = 속재료;
-  }
-
-  분해() {
-    return this.속재료;
-  }
+let i = 0;
+while (i < numbers.length) {
+  console.log(numbers[i]);
+  i++;
 }
 
-const 붕어빵1 = new 붕어빵("팥");
-const 붕어빵2 = new 붕어빵("슈크림");
-console.log(붕어빵1.분해());
-console.log(붕어빵2.분해());
+for (let i = 0; i < numbers.length; i++) {
+  console.log(numbers[i]);
+}
+
+for (let element of numbers) {
+  console.log(element);
+}

@@ -83,12 +83,31 @@ export const checkPalindrome = (s: string) => {
 }
 
 export const checkFrequency = (s: string) => {
-    let mostFrequent:string = "";
-    let sum = 0;
-    for (let i = 0; i < s.length; i++) {
-        if (s[i] === mostFrequent) {
-            sum = sum + 1;
+    const frequency: Record<string, number> = {};
+
+    for (let char of s) {
+        if (frequency[char] === undefined) {
+            frequency[char] = 1;
+        } else {
+            frequency[char] = frequency[char] + 1;
         }
     }
-}
 
+    let maxCount = 0;
+    let candidates = [];
+    for (let kvp of Object.entries(frequency)) {
+        const char = kvp[0];
+        const count = kvp[1];
+        if (maxCount < count) {
+            maxCount = count;
+            candidates = [];
+            candidates.push(char);
+        } else if (maxCount === count) {
+            maxCount = count;
+            candidates.push(char);
+        }
+    }
+
+    candidates.sort();
+    return candidates[0];
+}
