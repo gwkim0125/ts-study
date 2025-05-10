@@ -17,64 +17,63 @@ export const Arrange2 = (arr: number[]) => {
 }
 
 export const Arrange3 = (arr: number[]) => {
-    let sum = 0;
+    let count = 0;
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] % 2 !== 0) {
-            sum = sum + 1;
+            count = count + 1;
         }
     }
-    return sum;
+    return count;
 }
 
 export const Arrange4 = (arr: number[]) => {
-    let largestElement = arr[0];
-    let smallestElement = arr[1];
-    let sum = 0;
+    let maxNumber = arr[0];
+    let minNumber = arr[0];
     for (let i = 0; i < arr.length; i++) {
-        if (largestElement < arr[i]) {
-            largestElement = arr[i];
+        if (maxNumber < arr[i]) {
+            maxNumber = arr[i];
         }
-        else if (smallestElement > arr[i]) {
-            smallestElement = arr[i];
+        else if (minNumber > arr[i]) {
+            minNumber = arr[i];
         }
     }
-    sum = largestElement - smallestElement;
-    return sum;
+
+    return maxNumber - minNumber;
 }
 
 export const reverse = (s: string) => {
     let newString:string = "";
-    for (let i = s.length; i >= 0; i--) {
+    for (let i = s.length -1; i >= 0; i--) {
         newString += s[i];
     }
+
     return newString;
 }
 
 export const Arrange6 = (arr: number[]) => {
     let sum = 0;
-    let count = 0;
     for (let i = 0; i < arr.length; i++) {
         sum += arr[i];
-        count = count + 1;
     }
-    sum = sum / count
-    return sum;
+
+    return sum / arr.length;
 }
 
 export const Arrange7 = (arr: number[]) => {
-    let sum = 0;
+    let count = 0;
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] % 2 === 0) {
-            sum += arr[i];
+            count = count + 1;
         }
     }
-    return sum;
+
+    return count;
 }
 
 export const checkPalindrome = (s: string) => {
     let newString:string = "";
     let isPalindrome = false;
-    for (let i = s.length; i >= 0; i--) {
+    for (let i = s.length -1; i >= 0; i--) {
         newString += s[i];
     }
     if (newString === s) {
