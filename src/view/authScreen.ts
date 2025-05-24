@@ -22,25 +22,29 @@ export class AuthScreen {
   signIn = async () => {
     const isVerified = await this.signInForm.receiveInput();
     if (!isVerified) {
-      return null;
+      return;
     }
 
-    return this.userService.getUser(this.signInForm.getEmail(), this.signInForm.getPassword());
+    const user = this.userService.signIn(this.signInForm.getEmail(), this.signInForm.getPassword());
+    if (user === null) {
+      console.log("Email or Password is Wrong");
+    } else {
+      console.log(`Log In Successfull! ${user.getNickname()}`);
+      process.exit(0);
+    }
   }
   signUp = async () => {
     const isVerified = await this.signUpForm.receiveInput();
     if (!isVerified) {
-      return null;
+      return;
     }
 
-    let user = this.userService.findUser(this.signUpForm.getEmail());
-    if ( user === null) {
-      user = this.userService.createUser(this.signUpForm.getEmail(), this.signUpForm.getPassword(), this.signUpForm.getNickname());
-      return user;
+    let isSignUpSuccess = this.userService.signUp(this.signUpForm.getEmail(), this.signUpForm.getPassword(), this.signUpForm.getNickname());
+    if ( isSignUpSuccess === true) {
+      console.log("Sign up successfull");
     }
     else {
       console.log("This Email is already in use.");
-      return null;
     }
   }
 }

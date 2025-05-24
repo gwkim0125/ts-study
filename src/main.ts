@@ -4,9 +4,11 @@ import {SignInForm} from "./view/auth/signInForm";
 import {SignUpForm} from "./view/auth/signUpForm";
 import {AuthScreen} from "./view/authScreen";
 import {App} from "./app";
+import {UserRepository} from "./repository/userRepository";
 
 const dataBase = new Database();
-const userService = new UserService(dataBase);
+const repository = new UserRepository(dataBase);
+const userService = new UserService(repository);
 const signInForm = new SignInForm();
 const signUpForm = new SignUpForm();
 const authScreen = new AuthScreen(userService, signInForm, signUpForm);

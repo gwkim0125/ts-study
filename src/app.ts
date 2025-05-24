@@ -14,20 +14,10 @@ export class App {
     while (true) {
       const userSelect = await this.authScreen.selectAuth();
       if (userSelect === "E") {
-        this.user = await this.authScreen.signIn();
-        if (this.user === null) {
-          console.log("Email or Password is Wrong");
-        } else {
-          console.log(`Log In Successfull! ${this.user.getNickname()}`);
-          process.exit(0);
-        }
+        await this.authScreen.signIn();
       } else if (userSelect === "R") {
-        this.user = await this.authScreen.signUp();
-        if (this.user === null) {
-          console.log("Sign Up Failed, Please try again");
-        } else {
-          console.log(`Sign Up Successfull! ${this.user.getNickname()}`);
-        }
+        await this.authScreen.signUp();
+
       } else {
         console.log("Wrong input!");
       }

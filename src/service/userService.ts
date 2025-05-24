@@ -1,19 +1,20 @@
 import fs from "node:fs";
 import { User } from "../entity/user";
 import { Database } from "../data/database";
+import { UserRepository } from "../repository/userRepository";
 
 export class UserService {
-  database: Database;
 
-  constructor(database: Database) {
-    this.database = database;
-  }
+  userRepository: UserRepository;
 
-  getUser = (email: string, password: string) => {
-    const userProfiles = this.database.read("user.txt")
-    for (let i = 0; i < userProfiles.length; i++) {
-      const userProfile = userProfiles[i];
-      const user = new User(userProfile[0], userProfile[1], userProfile[2]);
+  constructor(userRepository: UserRepository) {
+    this.userRepository = userRepository;
+}
+
+  signIn = (email: string, password: string) => {
+    const userList = this.userRepository.getUsers()
+    for (let i = 0; i < userList.length; i++) {
+      const user = userList[i];
 
       if (user.getEmail() === email && user.getPassword() === password) {
         return user;
@@ -21,24 +22,18 @@ export class UserService {
     }
     return null;
   };
-  findUser = (email: string) => {
-    const userProfiles = this.database.read("user.txt")
-    for (let i = 0; i < userProfiles.length; i++) {
-      const userProfile = userProfiles[i];
-      const user = new User(userProfile[0], userProfile[1], userProfile[2]);
+
+  signUp = (email: string, password:string, nickname:string) => {
+    const userList = this.userRepository.getUsers()
+    for (let i = 0; i < userList.length; i++) {
+      const user = userList[i];
 
       if (user.getEmail() === email) {
-        return user;
+        return false;
       }
     }
-    return null;
+    const createUser = this.userRepository.createUser(email, password, nickname);
+    return true;
   }
 
-  createUser = (email: string, password: string, nickname: string) => {
-    fs.appendFileSync(
-        "user.txt",
-        `${email}, ${password}, ${nickname}\n`,
-    );
-    return new User(email, password, nickname);
-  }
 }
