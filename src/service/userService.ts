@@ -39,7 +39,6 @@ export class UserService {
         "user.txt",
         `${email}, ${password}, ${nickname}\n`,
     );
+    return new User(email, password, nickname);
   }
 }
-
-
