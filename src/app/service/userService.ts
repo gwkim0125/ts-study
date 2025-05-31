@@ -1,5 +1,6 @@
 import { UserRepository } from "../repository/userRepository";
 import { UserDTO } from "../dto/userDTO";
+import { PlayerDTO } from "../dto/playerDTO";
 
 export class UserService {
   private userRepository: UserRepository;
@@ -14,7 +15,7 @@ export class UserService {
       const user = userList[i];
 
       if (user.getEmail() === email && user.getPassword() === password) {
-        return new UserDTO(user.getNickname());
+        return new UserDTO(user.getEmail(), user.getNickname());
       }
     }
     return null;
@@ -31,5 +32,12 @@ export class UserService {
     }
     this.userRepository.createUser(email, password, nickname);
     return true;
+  };
+
+  loadPlayer = (email: string) => {
+    return new PlayerDTO(email);
+  };
+  createPlayer = (email: string) => {
+    return new PlayerDTO(email);
   };
 }

@@ -35,7 +35,7 @@ export class AuthScreen {
       console.log("Email or Password is Wrong");
     } else {
       console.log(`Log In Successfull! ${user.getNickname()}`);
-      process.exit(0);
+      return user;
     }
   };
   public signUp = async () => {
