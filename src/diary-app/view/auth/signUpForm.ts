@@ -8,15 +8,15 @@ export class SignUpForm {
   private password: string;
   private nickname: string;
 
-  constructor() {
+  public constructor() {
     this.email = "";
     this.password = "";
     this.nickname = "";
   }
 
-  receiveInput = async () => {
+  public receiveInput = async () => {
     const userEmail = await input("Please enter your email: ");
-    if (userEmail.includes("@") === false) {
+    if (!userEmail.includes("@")) {
       console.log("Email is wrong.");
       return false;
     }
@@ -27,17 +27,17 @@ export class SignUpForm {
       return false;
     }
 
-    const userNickname = await input("Please enter your Nickname: ");
+    await input("Please enter your Nickname: ");
 
     return true;
   };
-  getEmail = () => {
+  public getEmail = () => {
     return this.email;
   };
-  getPassword = () => {
+  public getPassword = () => {
     return this.password;
   };
-  getNickname = () => {
+  public getNickname = () => {
     return this.nickname;
   };
 }

@@ -4,11 +4,11 @@ import { SignUpForm } from "./auth/signUpForm";
 import { input } from "../library/input";
 
 export class AuthScreen {
-  userService: UserService;
-  signInForm: SignInForm;
-  signUpForm: SignUpForm;
+  private userService: UserService;
+  private signInForm: SignInForm;
+  private signUpForm: SignUpForm;
 
-  constructor(
+  public constructor(
     userService: UserService,
     signInForm: SignInForm,
     signUpForm: SignUpForm,
@@ -18,10 +18,10 @@ export class AuthScreen {
     this.signUpForm = signUpForm;
   }
 
-  selectAuth = async () => {
+  public selectAuth = async () => {
     return await input("Press E to Sign in or Press R to Sign Up: ");
   };
-  signIn = async () => {
+  public signIn = async () => {
     const isVerified = await this.signInForm.receiveInput();
     if (!isVerified) {
       return;
@@ -38,7 +38,7 @@ export class AuthScreen {
       process.exit(0);
     }
   };
-  signUp = async () => {
+  public signUp = async () => {
     const isVerified = await this.signUpForm.receiveInput();
     if (!isVerified) {
       return;

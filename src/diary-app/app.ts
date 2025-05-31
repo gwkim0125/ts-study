@@ -1,16 +1,13 @@
-import { UserEntity } from "./entity/userEntity";
 import { AuthScreen } from "./view/authScreen";
 
 export class App {
-  user: UserEntity | null;
-  authScreen: AuthScreen;
+  private authScreen: AuthScreen;
 
-  constructor(authScreen: AuthScreen) {
-    this.user = null;
+  public constructor(authScreen: AuthScreen) {
     this.authScreen = authScreen;
   }
 
-  run = async () => {
+  public run = async () => {
     while (true) {
       const userSelect = await this.authScreen.selectAuth();
       if (userSelect === "E") {

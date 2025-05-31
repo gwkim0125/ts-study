@@ -1,6 +1,5 @@
 import { Database } from "../data/database";
 import { UserEntity } from "../entity/userEntity";
-import fs from "node:fs";
 
 export class UserRepository {
   database: Database;
@@ -13,7 +12,11 @@ export class UserRepository {
     let userList = [];
     for (let i = 0; i < readProfile.length; i++) {
       const userProfile = readProfile[i];
-      const user = new UserEntity(userProfile[0], userProfile[1], userProfile[2]);
+      const user = new UserEntity(
+        userProfile[0],
+        userProfile[1],
+        userProfile[2],
+      );
       userList.push(user);
     }
 

@@ -11,7 +11,7 @@ export class SignInForm {
 
   receiveInput = async () => {
     this.email = await input("Please enter your email: ");
-    if (this.email.includes("@") === false) {
+    if (!this.email.includes("@")) {
       console.log("Email is wrong.");
       return false;
     }

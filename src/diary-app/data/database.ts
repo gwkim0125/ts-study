@@ -13,5 +13,5 @@ export class Database {
   };
   write = (fileName: string, fileData: string) => {
     fs.appendFileSync(fileName, `${fileData}\n`);
-  }
+  };
 }

@@ -1,11 +1,8 @@
-import fs from "node:fs";
-import { UserEntity } from "../entity/userEntity";
-import { Database } from "../data/database";
 import { UserRepository } from "../repository/userRepository";
-import {UserDTO} from "../dto/userDTO";
+import { UserDTO } from "../dto/userDTO";
 
 export class UserService {
-  userRepository: UserRepository;
+  private userRepository: UserRepository;
 
   constructor(userRepository: UserRepository) {
     this.userRepository = userRepository;

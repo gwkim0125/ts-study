@@ -7,8 +7,8 @@ import { App } from "./app";
 import { UserRepository } from "./repository/userRepository";
 
 const dataBase = new Database();
-const repository = new UserRepository(dataBase);
-const userService = new UserService(repository);
+const userRepository = new UserRepository(dataBase);
+const userService = new UserService(userRepository);
 const signInForm = new SignInForm();
 const signUpForm = new SignUpForm();
 const authScreen = new AuthScreen(userService, signInForm, signUpForm);
