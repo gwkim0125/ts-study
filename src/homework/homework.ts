@@ -31,4 +31,3 @@ import {
 // const numEvery = getNthFibonacci(10);
 //
 // console.log(numEvery);
-

@@ -1,8 +1,8 @@
-import { User } from "./entity/user";
-import {AuthScreen} from "./view/authScreen";
+import { UserEntity } from "./entity/userEntity";
+import { AuthScreen } from "./view/authScreen";
 
 export class App {
-  user: User | null;
+  user: UserEntity | null;
   authScreen: AuthScreen;
 
   constructor(authScreen: AuthScreen) {
@@ -17,7 +17,6 @@ export class App {
         await this.authScreen.signIn();
       } else if (userSelect === "R") {
         await this.authScreen.signUp();
-
       } else {
         console.log("Wrong input!");
       }

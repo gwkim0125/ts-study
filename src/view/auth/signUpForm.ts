@@ -1,7 +1,7 @@
 import { input } from "../../library/input";
 import fs from "node:fs";
 import { UserService } from "../../service/userService";
-import {SignInForm} from "./signInForm";
+import { SignInForm } from "./signInForm";
 
 export class SignUpForm {
   private email: string;
@@ -33,11 +33,11 @@ export class SignUpForm {
   };
   getEmail = () => {
     return this.email;
-  }
+  };
   getPassword = () => {
     return this.password;
-  }
+  };
   getNickname = () => {
     return this.nickname;
-  }
+  };
 }

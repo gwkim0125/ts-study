@@ -26,8 +26,8 @@ export class SignInForm {
   };
   getEmail = () => {
     return this.email;
-  }
+  };
   getPassword = () => {
     return this.password;
-  }
+  };
 }
