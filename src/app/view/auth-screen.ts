@@ -1,6 +1,6 @@
-import { UserService } from "../service/userService";
-import { SignInForm } from "./auth/signInForm";
-import { SignUpForm } from "./auth/signUpForm";
+import { UserService } from "../service/user-service";
+import { SignInForm } from "./auth/sign-in-form";
+import { SignUpForm } from "./auth/sign-up-form";
 import { input } from "../library/input";
 
 export class AuthScreen {

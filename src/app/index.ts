@@ -1,23 +1,19 @@
-import { TextDatabase } from "./data/textDatabase";
-import { UserService } from "./service/userService";
-import { SignInForm } from "./view/auth/signInForm";
-import { SignUpForm } from "./view/auth/signUpForm";
-import { AuthScreen } from "./view/authScreen";
+import { TextDatabase } from "./data/text-database";
+import { UserService } from "./service/user-service";
+import { SignInForm } from "./view/auth/sign-in-form";
+import { SignUpForm } from "./view/auth/sign-up-form";
+import { AuthScreen } from "./view/auth-screen";
 import { App } from "./app";
-import { UserRepository } from "./repository/userRepository";
-import { GameScreen } from "./view/gameScreen";
-import {CsvDatabase} from "./data/csvDatabase";
-import {PdfDatabase} from "./data/pdfDatabase";
+import { UserRepository } from "./repository/user-repository";
+import { CsvDatabase } from "./data/csv-database";
 
-const txtdatabase = new TextDatabase();
-const csvdatabase = new CsvDatabase();
-const pdfdatabase = new PdfDatabase();
-const userRepository = new UserRepository(pdfdatabase);
+const txtDatabase = new TextDatabase();
+const csvDatabase = new CsvDatabase();
+const userRepository = new UserRepository(txtDatabase);
 const userService = new UserService(userRepository);
 const signInForm = new SignInForm();
 const signUpForm = new SignUpForm();
 const authScreen = new AuthScreen(userService, signInForm, signUpForm);
-const lobbyScreen = new GameScreen(userService);
-const app = new App(authScreen, lobbyScreen);
+const app = new App(authScreen);
 
 app.run();

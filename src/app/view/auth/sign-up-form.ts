@@ -1,7 +1,7 @@
 import { input } from "../../library/input";
 import fs from "node:fs";
-import { UserService } from "../../service/userService";
-import { SignInForm } from "./signInForm";
+import { UserService } from "../../service/user-service";
+import { SignInForm } from "./sign-in-form";
 
 export class SignUpForm {
   private email: string;

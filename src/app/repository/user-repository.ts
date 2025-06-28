@@ -1,8 +1,5 @@
-import { TextDatabase } from "../data/textDatabase";
-import { UserEntity } from "../entity/userEntity";
-import {IDatabase} from "./interfaces";
-
-
+import { UserEntity } from "../entity/user-entity";
+import { IDatabase } from "./interfaces";
 
 export class UserRepository {
   database: IDatabase;

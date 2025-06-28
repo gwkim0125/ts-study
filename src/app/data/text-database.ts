@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import {IDatabase} from "../repository/interfaces";
+import { IDatabase } from "../repository/interfaces";
 
 export class TextDatabase implements IDatabase {
   read = (fileName: string) => {

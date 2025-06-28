@@ -1,15 +1,12 @@
-import { AuthScreen } from "./view/authScreen";
-import { UserDTO } from "./dto/userDTO";
-import { GameScreen } from "./view/gameScreen";
+import { AuthScreen } from "./view/auth-screen";
+import { UserDTO } from "./dto/use-dto";
 
 export class App {
   private user: UserDTO | undefined;
   private authScreen: AuthScreen;
-  private gameScreen: GameScreen;
 
-  public constructor(authScreen: AuthScreen, lobbyScreen: GameScreen) {
+  public constructor(authScreen: AuthScreen) {
     this.authScreen = authScreen;
-    this.gameScreen = lobbyScreen;
   }
 
   public run = async () => {
@@ -18,8 +15,7 @@ export class App {
       if (userSelect === "E") {
         this.user = await this.authScreen.signIn();
         if (this.user) {
-          this.gameScreen.initLobby(this.user);
-          this.gameScreen.play();
+          console.log(`로그인 성공: ${this.user.getNickname()}`);
         }
       } else if (userSelect === "R") {
         await this.authScreen.signUp();
