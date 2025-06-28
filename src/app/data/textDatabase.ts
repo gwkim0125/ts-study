@@ -1,6 +1,7 @@
 import fs from "node:fs";
+import {IDatabase} from "../repository/interfaces";
 
-export class Database {
+export class TextDatabase implements IDatabase {
   read = (fileName: string) => {
     const textData = fs.readFileSync(fileName).toString();
     const dataRows = textData.split("\n");

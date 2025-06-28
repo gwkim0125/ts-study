@@ -1,9 +1,9 @@
-import { Database } from "../data/database";
+import { TextDatabase } from "../data/textDatabase";
 
 export class PlayerRepository {
-  database: Database;
+  database: TextDatabase;
 
-  constructor(database: Database) {
+  constructor(database: TextDatabase) {
     this.database = database;
   }
 }

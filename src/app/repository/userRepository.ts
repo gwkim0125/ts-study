@@ -1,10 +1,13 @@
-import { Database } from "../data/database";
+import { TextDatabase } from "../data/textDatabase";
 import { UserEntity } from "../entity/userEntity";
+import {IDatabase} from "./interfaces";
+
+
 
 export class UserRepository {
-  database: Database;
+  database: IDatabase;
 
-  constructor(database: Database) {
+  constructor(database: IDatabase) {
     this.database = database;
   }
   getUsers = () => {
