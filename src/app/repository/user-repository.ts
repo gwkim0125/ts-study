@@ -8,12 +8,12 @@ export class UserRepository {
     this.database = database;
   }
   getUsers = () => {
-    const findProfile = this.database.find("user.txt");
-    if (!findProfile) {
-      return [];
-    }
-    this.database.convertToCSV("user.txt")
-    const readProfile = this.database.read("user.csv");
+    //const findProfile = this.database.find("user.txt");
+    // if (!findProfile) {
+    //   return [];
+    // }
+    // this.database.convertToCSV("user.txt")
+    const readProfile = this.database.read("user.txt");
     let userList = [];
     for (let i = 0; i < readProfile.length; i++) {
       const userProfile = readProfile[i];

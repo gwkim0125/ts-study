@@ -6,6 +6,7 @@ import { AuthScreen } from "./view/auth-screen";
 import { App } from "./app";
 import { UserRepository } from "./repository/user-repository";
 import { CsvDatabase } from "./data/csv-database";
+import {MainScreen} from "./view/main-screen";
 
 const txtDatabase = new TextDatabase();
 const csvDatabase = new CsvDatabase();
@@ -14,7 +15,8 @@ const userService = new UserService(userRepository);
 const signInForm = new SignInForm();
 const signUpForm = new SignUpForm();
 const authScreen = new AuthScreen(userService, signInForm, signUpForm);
-const app = new App(authScreen);
+const mainScreen = new MainScreen();
+const app = new App(authScreen, mainScreen);
 
 app.run();
 // 객체지향 프로그래밍

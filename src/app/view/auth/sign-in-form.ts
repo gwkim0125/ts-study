@@ -17,8 +17,8 @@ export class SignInForm {
     }
 
     this.password = await input("Please enter your password: ");
-    if (this.password.length < 8) {
-      console.log("Your Password is too short.");
+    if (this.password.length < 4) {
+      console.log("Your Password is toto short.");
       return false;
     }
 
