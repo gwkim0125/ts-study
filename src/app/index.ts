@@ -17,3 +17,9 @@ const authScreen = new AuthScreen(userService, signInForm, signUpForm);
 const app = new App(authScreen);
 
 app.run();
+// 객체지향 프로그래밍
+// 1. 단일 책임의 원칙
+// 2. 의존성 역전의 원칙
+// 3. 인터페이스 분리의 원칙
+// 4. 개방폐쇄의 원칙
+// 5. 리스코프 치환의 원칙

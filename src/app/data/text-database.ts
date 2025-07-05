@@ -1,7 +1,8 @@
 import fs from "node:fs";
-import { IDatabase } from "../repository/interfaces";
+import {IDatabase, IOldDatabase} from "../repository/interfaces";
+import {Database} from "./database";
 
-export class TextDatabase implements IDatabase {
+export class TextDatabase extends Database implements IDatabase, IOldDatabase {
   read = (fileName: string) => {
     const textData = fs.readFileSync(fileName).toString();
     const dataRows = textData.split("\n");
@@ -15,4 +16,7 @@ export class TextDatabase implements IDatabase {
   write = (fileName: string, fileData: string) => {
     fs.appendFileSync(fileName, `${fileData}\n`);
   };
+  convertToCSV = (fileName: string) => {
+    return;
+  }
 }
