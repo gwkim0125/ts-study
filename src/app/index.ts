@@ -7,17 +7,22 @@ import { App } from "./app";
 import { UserRepository } from "./repository/user-repository";
 import { CsvDatabase } from "./data/csv-database";
 import {MainScreen} from "./view/main-screen";
+import {MessageService} from "./service/message-Service";
+import {MessageForm} from "./view/message/message-form";
+import {MessageRepository} from "./repository/message-repository";
 
 const txtDatabase = new TextDatabase();
 const csvDatabase = new CsvDatabase();
 const userRepository = new UserRepository(txtDatabase);
+const messageRepository = new MessageRepository(txtDatabase);
 const userService = new UserService(userRepository);
 const signInForm = new SignInForm();
 const signUpForm = new SignUpForm();
+const messageForm = new MessageForm();
+const messageService = new MessageService(messageRepository);
 const authScreen = new AuthScreen(userService, signInForm, signUpForm);
-const mainScreen = new MainScreen();
-const app = new App(authScreen, mainScreen);
-
+const mainScreen = new MainScreen(messageForm, messageService);
+const app = new App(authScreen, mainScreen, messageRepository);
 app.run();
 // 객체지향 프로그래밍
 // 1. 단일 책임의 원칙

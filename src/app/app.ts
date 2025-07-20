@@ -1,15 +1,18 @@
 import { AuthScreen } from "./view/auth-screen";
 import { UserDTO } from "./dto/use-dto";
 import { MainScreen } from "./view/main-screen";
+import {MessageRepository} from "./repository/message-repository";
 
 export class App {
   private user: UserDTO | undefined;
   private authScreen: AuthScreen;
   private mainScreen: MainScreen;
+  private messageRepository : MessageRepository;
 
-  public constructor(authScreen: AuthScreen, mainScreen: MainScreen) {
+  public constructor(authScreen: AuthScreen, mainScreen: MainScreen, messageRepository: MessageRepository) {
     this.authScreen = authScreen;
     this.mainScreen = mainScreen;
+    this.messageRepository = messageRepository;
   }
 
   public run = async () => {
@@ -24,6 +27,7 @@ export class App {
           const userMenuSelect = await this.mainScreen.selectMenu();
           if (userMenuSelect === "1") {
             console.log("Write Your Message")
+            await this.mainScreen.writeMessage();
           }
           else if (userMenuSelect === "2") {
             console.log("Load Your Messages")

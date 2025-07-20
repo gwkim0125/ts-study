@@ -17,7 +17,7 @@ export class MessageForm {
         return true;
 
     }
-    getMessage = () => {
+    public getMessage = () => {
         return this.message;
     }
 }
