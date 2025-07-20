@@ -1,5 +1,5 @@
-import {UserRepository} from "../repository/user-repository";
-import {UserDTO} from "../dto/use-dto";
+import { UserRepository } from "../repository/user-repository";
+import { UserDTO } from "../dto/use-dto";
 
 export class UserService {
   private userRepository: UserRepository;
