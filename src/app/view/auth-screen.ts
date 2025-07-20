@@ -18,13 +18,13 @@ export class AuthScreen {
     this.signUpForm = signUpForm;
   }
 
-  public selectAuth = async () => {
+  public select = async () => {
     return await input("Press E to Sign in or Press R to Sign Up: ");
   };
   public signIn = async () => {
     const isVerified = await this.signInForm.receiveInput();
     if (!isVerified) {
-      return;
+      return null;
     }
 
     const user = this.userService.signIn(
@@ -32,11 +32,12 @@ export class AuthScreen {
       this.signInForm.getPassword(),
     );
     if (user === null) {
-      console.log("Email or Password is Wrong");
-    } else {
-      console.log(`Log In Successfull! ${user.getNickname()}`);
-      return user;
+      console.log("이메일 또는 비밀번호가 틀렸습니다.");
+      return null;
     }
+
+    console.log(`${user.getNickname()}님 환영합니다!`);
+    return user;
   };
   public signUp = async () => {
     const isVerified = await this.signUpForm.receiveInput();

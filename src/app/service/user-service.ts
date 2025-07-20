@@ -1,5 +1,5 @@
-import { UserRepository } from "../repository/user-repository";
-import { UserDTO } from "../dto/use-dto";
+import {UserRepository} from "../repository/user-repository";
+import {UserDTO} from "../dto/use-dto";
 
 export class UserService {
   private userRepository: UserRepository;
@@ -9,27 +9,22 @@ export class UserService {
   }
 
   signIn = (email: string, password: string) => {
-    const userList = this.userRepository.getUsers();
-    for (let i = 0; i < userList.length; i++) {
-      const user = userList[i];
-
-      if (user.getEmail() === email && user.getPassword() === password) {
-        return new UserDTO(user.getEmail(), user.getNickname());
-      }
+    const user = this.userRepository.findUser(email);
+    if (user === null) {
+      return null;
     }
-    return null;
+    if (user.getPassword() !== password) {
+      return null;
+    }
+
+    return new UserDTO(user.getEmail(), user.getNickname());
   };
-
   signUp = (email: string, password: string, nickname: string) => {
-    const userList = this.userRepository.getUsers();
-    for (let i = 0; i < userList.length; i++) {
-      const user = userList[i];
-
-      if (user.getEmail() === email) {
-        return false;
-      }
+    const user = this.userRepository.findUser(email);
+    if (user !== null) {
+      return false;
     }
-    this.userRepository.createUser(email, password, nickname);
-    return true;
+
+    return this.userRepository.createUser(email, password, nickname);
   };
 }

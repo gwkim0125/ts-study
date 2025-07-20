@@ -1,46 +1,42 @@
 import { AuthScreen } from "./view/auth-screen";
 import { UserDTO } from "./dto/use-dto";
 import { MainScreen } from "./view/main-screen";
-import { MessageRepository } from "./repository/message-repository";
 
 export class App {
-  private user: UserDTO | undefined;
   private authScreen: AuthScreen;
   private mainScreen: MainScreen;
-  private messageRepository: MessageRepository;
+  private user: UserDTO | null;
 
-  public constructor(
-    authScreen: AuthScreen,
-    mainScreen: MainScreen,
-    messageRepository: MessageRepository,
-  ) {
+  public constructor(authScreen: AuthScreen, mainScreen: MainScreen) {
     this.authScreen = authScreen;
     this.mainScreen = mainScreen;
-    this.messageRepository = messageRepository;
+    this.user = null;
   }
 
   public run = async () => {
     while (true) {
-      const userSelect = await this.authScreen.selectAuth();
-      if (userSelect === "E") {
+      const authChoice = await this.authScreen.select();
+      if (authChoice === "E") {
         this.user = await this.authScreen.signIn();
-        console.log(this.user);
-        if (this.user) {
-          console.log(`로그인 성공: ${this.user.getNickname()}`);
-
-          const userMenuSelect = await this.mainScreen.selectMenu();
-          if (userMenuSelect === "1") {
-            console.log("Write Your Message");
-            await this.mainScreen.writeMessage();
-          } else if (userMenuSelect === "2") {
-            console.log("Load Your Messages");
+        if (this.user !== null) {
+          // 이 인증 반복문은 벗어나서 아래로 내려가주세요!
+          const menuChoice = await this.mainScreen.select();
+          if (menuChoice === "1") {
+            await this.mainScreen.writeMessage(this.user.getEmail());
+          } else if (menuChoice === "2") {
+            const messages = await this.mainScreen.loadMessages();
+            for (const message of messages) {
+              this.mainScreen.printMessage(message);
+            }
           }
         }
-      } else if (userSelect === "R") {
+      } else if (authChoice === "R") {
         await this.authScreen.signUp();
       } else {
-        console.log("Wrong input!");
+        console.log("잘못된 입력입니다.");
       }
     }
+
+    // 메인 메뉴 작업은 인증 반복문이 끝나고 여기에서부터...
   };
 }

@@ -1,6 +1,6 @@
 import { input } from "../library/input";
 import { MessageForm } from "./message/message-form";
-import { MessageService } from "../service/message-Service";
+import { MessageService } from "../service/message-service";
 
 export class MainScreen {
   private messageForm: MessageForm;
@@ -10,25 +10,30 @@ export class MainScreen {
     this.messageForm = messageForm;
     this.messageService = messageService;
   }
-  public selectMenu = async () => {
-    return await input(
-      "Press 1 to Write Message or Press 2 to Load Messages: ",
-    );
+  public select = async () => {
+    return await input("[1] 메세지 작성, [2] 메세지 불러오기: ");
   };
-  public writeMessage = async () => {
+  public writeMessage = async (email: string) => {
     const isFormCorrect = await this.messageForm.receiveInput();
     if (!isFormCorrect) {
       return;
     }
 
-    let isMessageSuccess = this.messageService.writeMessage(
+    const isSuccessWrite = this.messageService.writeMessage(
+      email,
       this.messageForm.getMessage(),
     );
 
-    if (isMessageSuccess) {
+    if (isSuccessWrite) {
       console.log("Your Message is Successfully saved!");
     } else {
       console.log("Your Message is Not correct!");
     }
+
+    return;
   };
+  public loadMessages = async () => {
+    return [];
+  };
+  public printMessage = (message: any) => {};
 }

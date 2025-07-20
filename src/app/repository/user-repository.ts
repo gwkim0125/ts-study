@@ -7,14 +7,9 @@ export class UserRepository {
   constructor(database: IDatabase & IOldDatabase) {
     this.database = database;
   }
-  getUsers = () => {
-    //const findProfile = this.database.find("user.txt");
-    // if (!findProfile) {
-    //   return [];
-    // }
-    // this.database.convertToCSV("user.txt")
+
+  findUser = (email: string) => {
     const readProfile = this.database.read("user.txt");
-    let userList = [];
     for (let i = 0; i < readProfile.length; i++) {
       const userProfile = readProfile[i];
       const user = new UserEntity(
@@ -22,17 +17,20 @@ export class UserRepository {
         userProfile[1],
         userProfile[2],
       );
-      userList.push(user);
+      if (user.getEmail() === email) {
+        return user;
+      }
     }
 
-    return userList;
+    return null;
   };
   createUser = (email: string, password: string, nickname: string) => {
     const isTextExists = this.database.find("user.txt");
     if (!isTextExists) {
-      return null;
+      return false;
     }
+
     this.database.write("user.txt", `${email}, ${password}, ${nickname}`);
-    return new UserEntity(email, password, nickname);
+    return true;
   };
 }

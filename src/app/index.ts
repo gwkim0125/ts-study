@@ -7,10 +7,11 @@ import { App } from "./app";
 import { UserRepository } from "./repository/user-repository";
 import { CsvDatabase } from "./data/csv-database";
 import { MainScreen } from "./view/main-screen";
-import { MessageService } from "./service/message-Service";
+import { MessageService } from "./service/message-service";
 import { MessageForm } from "./view/message/message-form";
 import { MessageRepository } from "./repository/message-repository";
 
+// 의존성 주입
 const txtDatabase = new TextDatabase();
 const csvDatabase = new CsvDatabase();
 const userRepository = new UserRepository(txtDatabase);
@@ -22,7 +23,7 @@ const messageForm = new MessageForm();
 const messageService = new MessageService(messageRepository);
 const authScreen = new AuthScreen(userService, signInForm, signUpForm);
 const mainScreen = new MainScreen(messageForm, messageService);
-const app = new App(authScreen, mainScreen, messageRepository);
+const app = new App(authScreen, mainScreen);
 
 app.run();
 

@@ -6,8 +6,8 @@ export class MessageRepository {
   constructor(database: IDatabase & IOldDatabase) {
     this.database = database;
   }
-  createMessage = (message: string) => {
-    this.database.write("message.txt", `${message}`);
+  createMessage = (email: string, message: string) => {
+    this.database.write("message.txt", `${email}, ${message}`);
     return true;
   };
 }
