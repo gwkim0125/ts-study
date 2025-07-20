@@ -20,7 +20,9 @@ export class UserService {
     return new UserDTO(user.getEmail(), user.getNickname());
   };
   signUp = (email: string, password: string, nickname: string) => {
+    console.log(email);
     const user = this.userRepository.findUser(email);
+    console.log("!!" ,user)
     if (user !== null) {
       return false;
     }

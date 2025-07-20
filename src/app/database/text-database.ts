@@ -7,7 +7,7 @@ export class TextDatabase extends Database implements IDatabase, IOldDatabase {
 
   constructor() {
     super();
-    this.path = "./database";
+    this.path = "./data";
   }
 
   read = (fileName: string) => {

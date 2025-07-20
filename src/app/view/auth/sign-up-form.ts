@@ -15,19 +15,19 @@ export class SignUpForm {
   }
 
   public receiveInput = async () => {
-    const userEmail = await input("Please enter your email: ");
-    if (!userEmail.includes("@")) {
+    this.email = await input("Please enter your email: ");
+    if (!this.email.includes("@")) {
       console.log("Email is wrong.");
       return false;
     }
 
-    const userPassword = await input("Please enter your password: ");
-    if (userPassword.length < 4) {
+    this.password = await input("Please enter your password: ");
+    if (this.password.length < 4) {
       console.log("Your Password is too short.");
       return false;
     }
 
-    await input("Please enter your Nickname: ");
+    this.nickname = await input("Please enter your Nickname: ");
 
     return true;
   };
