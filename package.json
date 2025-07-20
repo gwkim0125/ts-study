@@ -2,8 +2,8 @@
   "name": "ts-study",
   "version": "1.0.0",
   "scripts": {
-    "start": "tsc && node dist/app/index.js",
-    "homework": "tsc && node dist/homework/homework.js",
+    "app": "tsc && node dist/app/index.js",
+    "hw": "tsc && node dist/homework/homework.js",
     "pretty": "prettier --write \"src/**/*.ts\""
   },
   "private": true,

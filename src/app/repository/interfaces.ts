@@ -1,7 +1,7 @@
 export interface IDatabase {
   read(fileName: string): string[][];
   write(fileName: string, data: string): void;
-  find(fileName: string) : boolean;
+  find(fileName: string): boolean;
 }
 
 export interface IOldDatabase {

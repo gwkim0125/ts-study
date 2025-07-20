@@ -6,10 +6,10 @@ import { AuthScreen } from "./view/auth-screen";
 import { App } from "./app";
 import { UserRepository } from "./repository/user-repository";
 import { CsvDatabase } from "./data/csv-database";
-import {MainScreen} from "./view/main-screen";
-import {MessageService} from "./service/message-Service";
-import {MessageForm} from "./view/message/message-form";
-import {MessageRepository} from "./repository/message-repository";
+import { MainScreen } from "./view/main-screen";
+import { MessageService } from "./service/message-Service";
+import { MessageForm } from "./view/message/message-form";
+import { MessageRepository } from "./repository/message-repository";
 
 const txtDatabase = new TextDatabase();
 const csvDatabase = new CsvDatabase();

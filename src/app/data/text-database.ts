@@ -1,6 +1,6 @@
 import fs from "node:fs";
-import {IDatabase, IOldDatabase} from "../repository/interfaces";
-import {Database} from "./database";
+import { IDatabase, IOldDatabase } from "../repository/interfaces";
+import { Database } from "./database";
 
 export class TextDatabase extends Database implements IDatabase, IOldDatabase {
   read = (fileName: string) => {
@@ -18,5 +18,5 @@ export class TextDatabase extends Database implements IDatabase, IOldDatabase {
   };
   convertToCSV = (fileName: string) => {
     return;
-  }
+  };
 }

@@ -1,14 +1,14 @@
-import {MessageRepository} from "../repository/message-repository";
+import { MessageRepository } from "../repository/message-repository";
 
 export class MessageService {
-    private messageRepository: MessageRepository;
+  private messageRepository: MessageRepository;
 
-    constructor(messageRepository: MessageRepository) {
-        this.messageRepository = messageRepository;
-    }
+  constructor(messageRepository: MessageRepository) {
+    this.messageRepository = messageRepository;
+  }
 
-    writeMessage = (message: string) => {
-        this.messageRepository.createMessage(message);
-        return true;
-    }
+  writeMessage = (message: string) => {
+    this.messageRepository.createMessage(message);
+    return true;
+  };
 }

@@ -1,23 +1,21 @@
-
-import {input} from "../../library/input";
+import { input } from "../../library/input";
 
 export class MessageForm {
-    private message: string;
+  private message: string;
 
-    public constructor() {
-        this.message = "";
-    }
+  public constructor() {
+    this.message = "";
+  }
 
-    receiveInput = async () => {
-        this.message = await input("Please enter your message: ");
-        if (this.message.length > 30) {
-            console.log("메세지는 30자이하여야합니다");
-            return false
-        }
-        return true;
-
+  receiveInput = async () => {
+    this.message = await input("Please enter your message: ");
+    if (this.message.length > 30) {
+      console.log("메세지는 30자이하여야합니다");
+      return false;
     }
-    public getMessage = () => {
-        return this.message;
-    }
+    return true;
+  };
+  public getMessage = () => {
+    return this.message;
+  };
 }

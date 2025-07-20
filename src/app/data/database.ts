@@ -1,5 +1,5 @@
 export class Database {
-    find = (fileName: string) => {
-        return true;
-    };
+  find = (fileName: string) => {
+    return true;
+  };
 }

@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import { IDatabase } from "../repository/interfaces";
-import {Database} from "./database";
+import { Database } from "./database";
 
 export class CsvDatabase extends Database implements IDatabase {
   read(fileName: string): string[][] {
