@@ -23,10 +23,22 @@ const messageService = new MessageService(messageRepository);
 const authScreen = new AuthScreen(userService, signInForm, signUpForm);
 const mainScreen = new MainScreen(messageForm, messageService);
 const app = new App(authScreen, mainScreen, messageRepository);
+
 app.run();
-// 객체지향 프로그래밍
+
+// 객체 지향 프로그래밍: 크고 복잡한 소프트웨어를 유지, 보수하기 위한 설계 원칙
+
+// 객체 지향 프로그래밍의 목표: 분업, 협업
+
+// 객체 지향 프로그래밍 4대 특성
+// 1. 추상화
+// 2. 캡슐화
+// 3. 상속
+// 4. 다형성
+
+// 객체 지향 프로그래밍 5대 원칙
 // 1. 단일 책임의 원칙
-// 2. 의존성 역전의 원칙
-// 3. 인터페이스 분리의 원칙
-// 4. 개방폐쇄의 원칙
+// 2. 개방 폐쇄의 원칙
+// 3. 의존성 역전의 원칙
+// 4. 인터페이스 분리의 원칙
 // 5. 리스코프 치환의 원칙
